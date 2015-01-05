@@ -71,22 +71,24 @@ void loop()
 	char print_string[17];
 	const unsigned short str_leng = 16;
 	unsigned short i;
-	for (unsigned short radio_index=0; radio_index < radiostations_count; ++radio_index) {
+
+	for (short radio_index=0; radio_index < radiostations_count; ++radio_index) {
+
 		const Radiostation *radio = &radiostations[radio_index];
-		memset(print_string, 16, ' ');
-		print_string[str_leng] = 0;
-		const float fH = floor(radio->f);
-		const float fL = ((radio->f - (float)fH)*100.0);
-		i = snprintf(print_string, 16, "#%02hu:%02hu %d.%dMHz", radio_index, radiostations_count, (int)fH, (int)fL);
-        for (i=i-1; i<str_leng; ++i) {
+
+		int frq = round(radio->f*100.0);
+		int frqH = frq/100;
+		int frqL = frq - frqH * 100;
+
+ 		i = snprintf(print_string, 16, "#%02d %02d.%02dMHz", (int)radio_index+1, frqH, frqL);
+        for (; i<str_leng; ++i) {
         	print_string[i] = ' ';
         }
         print_string[str_leng] = 0;
 		lcd.setCursor(0, 0);
 		lcd.print(print_string);
 
-
-        for (i=0; i<str_leng; ++i) {
+        for (i=0; i<str_leng && radio->name[i]; ++i) {
         	print_string[i] = radio->name[i];
         }
         for (; i<str_leng; ++i) {
@@ -98,8 +100,10 @@ void loop()
 		lcd.setCursor(0, 1);
 		lcd.print(print_string);
 
-		delay(500);
-  }
+		setFrequency(radio->f);
+
+		delay(2000);
+	}
 }
 
 
