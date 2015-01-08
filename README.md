@@ -11,3 +11,6 @@ real time clock
 https://github.com/adafruit/RTClib
 https://learn.adafruit.com/ds1307-real-time-clock-breakout-board-kit/understanding-the-code
 http://www.bristolwatch.com/arduino/arduino_ds1307.htm
+
+nice RDA5807M library
+https://github.com/mathertel/Radio

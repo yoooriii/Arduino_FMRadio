@@ -1,0 +1,1 @@
+#ifndef __PREFIX_H__#define __PREFIX_H__#define DEBUG 1#	ifdef	DEBUG#	define	LOGTHIS		Serial.println(__PRETTY_FUNCTION__)#	else#	define	LOGTHIS#	endif#	ifndef bzero#	define bzero(p,l)	memset(p, 0, l);#	endif#endif	// __PREFIX_H__
