@@ -1,1 +1,0 @@
-#ifndef __RADIOSTATIONS_KIEV__#define __RADIOSTATIONS_KIEV__typedef enum RadioStatus {	STATUS_DEFAULT = 0,	STATUS_DISABLED = 0x80} RadioStatus;typedef struct Radiostation {	unsigned char	status;	float			f;	char			*name;} Radiostation;extern Radiostation radiostations[];extern const short radiostations_count;#endif
